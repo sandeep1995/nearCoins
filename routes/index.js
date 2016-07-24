@@ -26,6 +26,13 @@ router.get('/redirect', function (req, res){
 	    return res.json(error);
 	  }
 	  res.json(body);
+	  if(body.payment_request.status == "Completed") {
+	  	request.post('http://52.175.36.115:3000/addMoney',{form: {id: body.payment_request.purpose, amount: body.payment_request.amount}},
+	  		function(error, response, body){
+    console.log(body);
+    res.end("Done");
+});
+	  }
 	});
 
 	request.get('https://www.instamojo.com/api/1.1/payment-requests/'+payment_request_id+'/'+payment_id, {headers: headers}, function(error, response, body){
@@ -55,7 +62,5 @@ request.post('https://www.instamojo.com/api/1.1/payment-requests/',
     res.redirect(body.payment_request.longurl);
 });
 });
-
-
 
 module.exports = router;
