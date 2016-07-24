@@ -41,9 +41,7 @@ router.post('/add', function (req, res){
 	var payload = {
   purpose: purpose,
   amount: amount,
-  redirect_url: 'http://localhost:3000/redirect/',
-  send_email: true,
-  webhook: 'http://localhost:3000/process/'
+  webhook: 'http://www.google.com/process/'
 };
 
 console.log(payload);
