@@ -63,20 +63,12 @@ apiRoutes.post('/authenticate', function (req, res) {
         // password checking
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
-
-            var payload = {
-              id: user._id,
-              number: user.Number
-            };
-            //console.log(payload);
-            var token = jwt.sign(payload, config.secret, {
-              expiresIn: 3600 // in seconds
-            });
-            //console.log(token);
+            
             res.json({
               error: false,
               message: 'Successfully Authenticated',
-              token: token
+              id: user._id,
+              number: user.Number
             });
           } else {
             // password does not match
