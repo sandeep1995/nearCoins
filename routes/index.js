@@ -34,7 +34,7 @@ router.get('/redirect', function (req, res){
 	  if(body.payment_request.status == "Completed") {
 	  	request.post('http://52.175.36.115:3000/addMoney',{form: {id: body.payment_request.purpose, amount: body.payment_request.amount}},
 	  		function(error, response, body){
-    v	   var d = JSON.parse(body);
+    	   var d = JSON.parse(body);
 	  res.redirect(d.payment_request.longurl);
     res.end("Done");
 });
