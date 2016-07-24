@@ -58,7 +58,7 @@ console.log(payload);
 request.post('https://www.instamojo.com/api/1.1/payment-requests/',
 	{form: payload,  headers: headers}, 
 	function(error, response, body){
-    console.log(body);
+    body = JSON.parse(body);
     res.json(body);
     res.redirect(body.payment_request.longurl);
 	});
