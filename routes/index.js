@@ -10,12 +10,14 @@ router.get('/', function(req, res) {
 });
 
 router.get('/add/:id', function(req, res) {
-	res.render('form', {id: req.params.id});
+	
+	res.render('form', {id: 'binayak@bufo.co.in'});
 });
 
 
 router.post('/process', function(req, res){
-	res.json(req.body);
+	var d = JSON.parse(req.body);
+	res.redirect(d.payment_request.longurl);
 });
 
 router.get('/redirect', function (req, res){
@@ -25,11 +27,15 @@ router.get('/redirect', function (req, res){
 	  if(error){
 	    return res.json(error);
 	  }
-	  res.json(body);
+	  
+	  var d = JSON.parse(body);
+	  res.redirect(d.payment_request.longurl);
+	  
 	  if(body.payment_request.status == "Completed") {
 	  	request.post('http://52.175.36.115:3000/addMoney',{form: {id: body.payment_request.purpose, amount: body.payment_request.amount}},
 	  		function(error, response, body){
-    console.log(body);
+    v	   var d = JSON.parse(body);
+	  res.redirect(d.payment_request.longurl);
     res.end("Done");
 });
 	  }
@@ -39,7 +45,8 @@ router.get('/redirect', function (req, res){
 	  if(error){
 	  	res.json(error);
 	  }
-	   res.json(body);
+	   var d = JSON.parse(body);
+	  res.redirect(d.payment_request.longurl);
 	});
 });
 
@@ -59,8 +66,8 @@ request.post('https://www.instamojo.com/api/1.1/payment-requests/',
 	{form: payload,  headers: headers}, 
 	function(error, response, body){
     body = JSON.parse(body);
-    res.json(body);
-    res.redirect(body.payment_request.longurl);
+    var d = JSON.parse(body);
+	  res.redirect(d.payment_request.longurl);
 	});
 });
 
