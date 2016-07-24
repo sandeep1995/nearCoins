@@ -49,7 +49,7 @@ router.post('/add', function (req, res){
 	var payload = {
   	purpose: purpose,
   	amount: amount,
-  	webhook: 'http://52.175.36.115:3000/redirect',
+  	webhook: 'http://52.175.36.115:3000/process',
   	redirect_url: 'http://52.175.36.115:3000/redirect'
   	};
 
