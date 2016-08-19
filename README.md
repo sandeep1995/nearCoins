@@ -1,6 +1,6 @@
 # nearCoins
 Near coins (offline money sharing app back end)
-Jump to <a href="https://github.com/sandeep1995/nearCoins/blob/master/routes/api.js">REST api Link</a>
+Jump to <a href="https://github.com/sandeep1995/nearCoins/blob/master/routes/api.js">REST api Link</a> <br>
 This is a REST api service written on Express Js framework. 
 
 Features: 
